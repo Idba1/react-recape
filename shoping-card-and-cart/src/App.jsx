@@ -15,8 +15,10 @@ function App() {
     }
   };
 
-  const handleDeleted=()=>{
-    console.log("deleted!");
+  const handleDeleted = (id) => {
+    // console.log(id);
+    const newCart = cart.filter(product => product.id != id);
+    setCart(newCart)
   }
 
   return (
@@ -33,10 +35,10 @@ function App() {
           </div>
           {cart.map((product, index) => (
             <div key={product.id} className='flex justify-around text-2xl mt-5'>
-              <p>{index+1}</p>
-              <h5>{product.title.slice(0,10)}</h5>
+              <p>{index + 1}</p>
+              <h5>{product.title.slice(0, 10)}</h5>
               <h5>{product.price}</h5>
-              <button onClick={()=>handleDeleted()}>Deleted</button>
+              <button onClick={() => handleDeleted(product.id)}>Deleted</button>
             </div>
           ))}
         </div>
