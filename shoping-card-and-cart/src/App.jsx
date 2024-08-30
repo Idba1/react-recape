@@ -15,6 +15,10 @@ function App() {
     }
   };
 
+  const handleDeleted=()=>{
+    console.log("deleted!");
+  }
+
   return (
     <>
       <div className='flex justify-around text-white'>
@@ -27,10 +31,12 @@ function App() {
             <h5>Name</h5>
             <h5>Price</h5>
           </div>
-          {cart.map((product) => (
+          {cart.map((product, index) => (
             <div key={product.id} className='flex justify-around text-2xl mt-5'>
+              <p>{index+1}</p>
               <h5>{product.title.slice(0,10)}</h5>
               <h5>{product.price}</h5>
+              <button onClick={()=>handleDeleted()}>Deleted</button>
             </div>
           ))}
         </div>
