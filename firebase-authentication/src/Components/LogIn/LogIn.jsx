@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
 
 const LogIn = () => {
+    const handleLogIn = (e) => {
+        e.preventDefault()
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+        console.log(email, password);
+    }
     return (
         <div>
             <div className="w-full mx-auto max-w-md p-4 rounded-md shadow sm:p-8 ">
@@ -33,7 +39,7 @@ const LogIn = () => {
                     <p className="px-3 text-gray-400">OR</p>
                     <hr className="w-full text-gray-400" />
                 </div>
-                <form noValidate="" action="" className="space-y-8">
+                <form onSubmit={handleLogIn} noValidate="" action="" className="space-y-8">
                     <div className="space-y-4">
                         <div className="space-y-2">
                             <label htmlFor="email" className="block text-sm">Email address</label>
@@ -46,8 +52,9 @@ const LogIn = () => {
                             </div>
                             <input type="password" name="password" id="password" placeholder="*****" className="w-full px-3 py-2 border rounded-md border-gray-700  " />
                         </div>
+                        <button type="submit" className="w-full px-8 py-3 font-semibold rounded-md bg-blue-400 text-gray-900">Sign in</button>
                     </div>
-                    <button type="button" className="w-full px-8 py-3 font-semibold rounded-md bg-blue-400 text-gray-900">Sign in</button>
+
                 </form>
             </div>
         </div>

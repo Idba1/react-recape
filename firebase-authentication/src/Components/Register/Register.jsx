@@ -4,6 +4,16 @@ import SocialLogIn from '../SocialLogIn/SocialLogIn';
 
 const Register = () => {
     const showPassword = false;
+    const showconfirmedPassword = false;
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        const name= e.target.name.value;
+        const email= e.target.email.value;
+        const photo= e.target.photo.value;
+        const password= e.target.password.value;
+        const confirmedPassword= e.target.confirmedPassword.value;
+        console.log(name, email, photo, password,confirmedPassword);
+    }
 
     return (
         <div>
@@ -24,25 +34,25 @@ const Register = () => {
 
                             <div className="mt-6"></div>
 
-                            <form className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
+                            <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
                                 <div>
                                     <label className="block mb-2 text-sm text-sky-950 dark:text-sky-950">Name</label>
-                                    <input type="text" placeholder="your name" className="block w-full px-5 py-3 mt-2 text-sky-950 placeholder-gray-950 bg-white border border-gray-400 rounded-lg dark:placeholder-gray-600  dark:text-sky-300 dark:border-gray-700 focus:border-blue-950 dark:focus:border-blue-950 focus:ring-blue-950 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                    <input name='name' type="text" placeholder="your name" className="block w-full px-5 py-3 mt-2 text-sky-950 placeholder-gray-950 bg-white border border-gray-400 rounded-lg dark:placeholder-gray-600  dark:text-sky-300 dark:border-gray-700 focus:border-blue-950 dark:focus:border-blue-950 focus:ring-blue-950 focus:outline-none focus:ring focus:ring-opacity-40" />
                                 </div>
 
                                 <div>
                                     <label className="block mb-2 text-sm text-sky-950 dark:text-sky-950">Photo URL</label>
-                                    <input type="text" placeholder="photo_url" className="block w-full px-5 py-3 mt-2 text-sky-950 placeholder-gray-950 bg-white border border-gray-400 rounded-lg dark:placeholder-gray-600  dark:text-sky-300 dark:border-gray-700 focus:border-blue-950 dark:focus:border-blue-950 focus:ring-blue-950 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                    <input name="photo" type="text" placeholder="photo_url" className="block w-full px-5 py-3 mt-2 text-sky-950 placeholder-gray-950 bg-white border border-gray-400 rounded-lg dark:placeholder-gray-600  dark:text-sky-300 dark:border-gray-700 focus:border-blue-950 dark:focus:border-blue-950 focus:ring-blue-950 focus:outline-none focus:ring focus:ring-opacity-40" />
                                 </div>
 
                                 <div>
                                     <label className="block mb-2 text-sm text-sky-950 dark:text-sky-950">Email address</label>
-                                    <input type="email" placeholder="email" className="block w-full px-5 py-3 mt-2 text-sky-950 placeholder-gray-950 bg-white border border-gray-400 rounded-lg dark:placeholder-gray-600  dark:text-sky-300 dark:border-gray-700 focus:border-blue-950 dark:focus:border-blue-950 focus:ring-blue-950 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                    <input name="email" type="email" placeholder="email" className="block w-full px-5 py-3 mt-2 text-sky-950 placeholder-gray-950 bg-white border border-gray-400 rounded-lg dark:placeholder-gray-600  dark:text-sky-300 dark:border-gray-700 focus:border-blue-950 dark:focus:border-blue-950 focus:ring-blue-950 focus:outline-none focus:ring focus:ring-opacity-40" />
                                 </div>
 
                                 <div>
                                     <label className="block mb-2 text-sm text-sky-950 dark:text-sky-950">Password</label>
-                                    <input type={showPassword ? "text" : "password"} placeholder="Password" className="block w-full px-5 py-3 mt-2 text-sky-950 placeholder-gray-950 bg-white border border-gray-400 rounded-lg dark:placeholder-gray-600  dark:text-sky-300 dark:border-gray-700 focus:border-blue-950 dark:focus:border-blue-950 focus:ring-blue-950 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                    <input name="password" type={showPassword ? "text" : "password"} placeholder="Password" className="block w-full px-5 py-3 mt-2 text-sky-950 placeholder-gray-950 bg-white border border-gray-400 rounded-lg dark:placeholder-gray-600  dark:text-sky-300 dark:border-gray-700 focus:border-blue-950 dark:focus:border-blue-950 focus:ring-blue-950 focus:outline-none focus:ring focus:ring-opacity-40" />
                                     <span className="absolute top-96 right-24">
                                         {
                                             showPassword ? <FaEyeSlash /> : <FaEye />
@@ -50,14 +60,26 @@ const Register = () => {
                                     </span>
                                 </div>
 
+                                <div>
+                                    <label className="block mb-2 text-sm text-sky-950 dark:text-sky-950">confirmed Password</label>
+                                    <input name="confirmedPassword" type={showconfirmedPassword ? "text" : "confirmedPassword"} placeholder="confirmedPassword" className="block w-full px-5 py-3 mt-2 text-sky-950 placeholder-gray-950 bg-white border border-gray-400 rounded-lg dark:placeholder-gray-600  dark:text-sky-300 dark:border-gray-700 focus:border-blue-950 dark:focus:border-blue-950 focus:ring-blue-950 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                    <span className="absolute top-96 right-24">
+                                        {
+                                            showconfirmedPassword ? <FaEyeSlash /> : <FaEye />
+                                        }
+                                    </span>
+                                </div>
+
+                                <button type='submit' className="flex mx-auto mt-5 items-center justify-between w-full px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-950 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                                    <span>Sign Up </span>
+                                    <svg xmlns="http://www.w3.org/9500/svg" className="w-5 h-5 rtl:-scale-x-100" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                                    </svg>
+                                </button>
+
 
                             </form>
-                            <button className="flex mx-auto mt-5 items-center justify-between w-40 px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-950 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-                                <span>Sign Up </span>
-                                <svg xmlns="http://www.w3.org/9500/svg" className="w-5 h-5 rtl:-scale-x-100" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
-                                </svg>
-                            </button>
+
 
                             <div>
                                 <p className="mt-4 text-center text-sky-950 dark:text-sky-950">or sign in with</p>
