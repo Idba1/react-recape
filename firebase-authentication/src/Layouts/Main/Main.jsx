@@ -1,4 +1,5 @@
 import { Outlet } from "react-router-dom";
+import Navbar from "../../Components/Navbar/Navbar";
 
 const Main = () => {
     return (
@@ -7,6 +8,7 @@ const Main = () => {
             {/* <div className=" min-h-[calc(100vh-250px)] mt-20 " >
                 <Outlet ></Outlet>
             </div> */}
+            <Navbar></Navbar>
             <Outlet></Outlet>
             {/* <div className="mt-4 md:mt-6 lg:mt-12">
             </div> */}
