@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 
-const Card = () => {
+const Card = ({ handleCart }) => {
 
     const [Products, setProducts] = useState([]);
-    const [cart, setCart] = useState([]);
+    // const [cart, setCart] = useState([]);
     // useEffect(()=>{
     //     fetch("./fackData.json")
     //     .then(res => res.json())
@@ -21,18 +21,19 @@ const Card = () => {
     }, [])
     console.log(Products);
 
-    const handleCart = (p) => {
-        const isExist = cart.find((pd) => pd.id == p.id);
-        // console.log(isExist);
-        if (!isExist) {
-            setCart([...cart, p])
-        }
-        else {
-            alert("already in cart...")
-        }
-    };
+    // const handleCart = (p) => {
+    //     const isExist = cart.find((pd) => pd.id == p.id);
+    //     // console.log(isExist);
+    //     if (!isExist) {
+    //         setCart([...cart, p]);
+    //         alert("successfully added in cart!")
+    //     }
+    //     else {
+    //         alert("already in cart...")
+    //     }
+    // };
 
-    console.log(cart);
+    // console.log(cart);
 
     return (
         <div>
@@ -53,12 +54,18 @@ const Card = () => {
                             <p>{product.description}</p>
                             <div className="card-actions justify-around mt-5">
                                 <div className="text-2xl">{product.price}</div>
-                                <div onClick={() => handleCart(product)} className="btn btn-accent text-white badge-outline">Products</div>
+                                <div
+                                    onClick={() => handleCart(product)}
+                                    className="btn btn-accent text-white badge-outline"
+                                >
+                                    Add to Cart
+                                </div>
                             </div>
                         </div>
                     </div>
                 )))
             }
+
         </div>
     );
 };
