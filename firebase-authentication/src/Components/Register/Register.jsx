@@ -18,6 +18,10 @@ const Register = () => {
         const password= e.target.password.value;
         const confirmedPassword= e.target.confirmedPassword.value;
 
+        // if(!/@gmail\.com$/.test(email)){
+        //     setError("The email is not a valid Gmail address.");
+        //     return;
+        // }
         if(password.length<6){
             setError("password must be 6 characters!");
             return;
@@ -32,7 +36,9 @@ const Register = () => {
         }
         setError('');
         console.log(name, email, photo, password,confirmedPassword);
-        registerUser(email,password);
+        registerUser(email,password)
+        .then(result=>console.log(result.user))
+        .catch(error=>setError(error.message.split("/")[1].replace(")", "")))
     }
 
     return (

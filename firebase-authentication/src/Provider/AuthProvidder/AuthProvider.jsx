@@ -6,13 +6,13 @@ export const AuthContext = createContext(null)
 const AuthProvider = ({ children }) => {
 
     const registerUser = (email, password) => {
-        createUserWithEmailAndPassword(auth, email, password)
-            .then(result => console.log(result.user))
+       return createUserWithEmailAndPassword(auth, email, password)
+            // .then(result => console.log(result.user))
     }
 
     const logInUser = (email, password) => {
-        signInWithEmailAndPassword(auth, email, password)
-            .then(result => console.log(result.user))
+       return signInWithEmailAndPassword(auth, email, password)
+            // .then(result => console.log(result.user))
     }
 
     const authInfo = {
