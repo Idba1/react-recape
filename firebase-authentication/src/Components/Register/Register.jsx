@@ -1,8 +1,12 @@
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link } from "react-router-dom";
 import SocialLogIn from '../SocialLogIn/SocialLogIn';
+import { useContext } from 'react';
+import { AuthContext } from '../../Provider/AuthProvidder/AuthProvider';
 
 const Register = () => {
+
+    const {registerUser}=useContext(AuthContext)
     const showPassword = false;
     const showconfirmedPassword = false;
     const handleSubmit = (e) => {
@@ -13,6 +17,7 @@ const Register = () => {
         const password= e.target.password.value;
         const confirmedPassword= e.target.confirmedPassword.value;
         console.log(name, email, photo, password,confirmedPassword);
+        registerUser(email,password);
     }
 
     return (
