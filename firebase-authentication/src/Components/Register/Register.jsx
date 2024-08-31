@@ -1,13 +1,13 @@
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link } from "react-router-dom";
 import SocialLogIn from '../SocialLogIn/SocialLogIn';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { AuthContext } from '../../Provider/AuthProvidder/AuthProvider';
 
 const Register = () => {
 
     const {registerUser}=useContext(AuthContext)
-    
+    const[error,setError]=useState("");
     const showPassword = false;
     const showconfirmedPassword = false;
     const handleSubmit = (e) => {
@@ -17,6 +17,20 @@ const Register = () => {
         const photo= e.target.photo.value;
         const password= e.target.password.value;
         const confirmedPassword= e.target.confirmedPassword.value;
+
+        if(password.length<6){
+            setError("password must be 6 characters!");
+            return;
+        }
+        if(password!==confirmedPassword){
+            setError("password didn't match");
+            return;
+        }
+        if(!/[!@#$%^&*(),.?":{}|<>]/g.test(password)){
+            setError('Password does not contain special characters. please add a special characters like @,#,$,%,^,&,*....');
+            return;
+        }
+        setError('');
         console.log(name, email, photo, password,confirmedPassword);
         registerUser(email,password);
     }
@@ -68,13 +82,17 @@ const Register = () => {
 
                                 <div>
                                     <label className="block mb-2 text-sm text-sky-950 dark:text-sky-950">confirmed Password</label>
-                                    <input name="confirmedPassword" type={showconfirmedPassword ? "text" : "confirmedPassword"} placeholder="confirmedPassword" className="block w-full px-5 py-3 mt-2 text-sky-950 placeholder-gray-950 bg-white border border-gray-400 rounded-lg dark:placeholder-gray-600  dark:text-sky-300 dark:border-gray-700 focus:border-blue-950 dark:focus:border-blue-950 focus:ring-blue-950 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                    <input name="confirmedPassword" type={showconfirmedPassword ? "text" : "password"} placeholder="confirmedPassword" className="block w-full px-5 py-3 mt-2 text-sky-950 placeholder-gray-950 bg-white border border-gray-400 rounded-lg dark:placeholder-gray-600  dark:text-sky-300 dark:border-gray-700 focus:border-blue-950 dark:focus:border-blue-950 focus:ring-blue-950 focus:outline-none focus:ring focus:ring-opacity-40" />
                                     <span className="absolute top-96 right-24">
                                         {
                                             showconfirmedPassword ? <FaEyeSlash /> : <FaEye />
                                         }
                                     </span>
                                 </div>
+
+                                {
+                                    error&&<small className='text-red-600'>{error}</small>
+                                }
 
                                 <button type='submit' className="flex mx-auto mt-5 items-center justify-between w-full px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-950 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                                     <span>Sign Up </span>
