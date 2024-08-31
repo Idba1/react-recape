@@ -80,7 +80,6 @@ const Register = () => {
 
                             </form>
 
-
                             <div>
                                 <p className="mt-4 text-center text-sky-950 dark:text-sky-950">or sign in with</p>
                                 <SocialLogIn />
