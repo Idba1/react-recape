@@ -7,6 +7,7 @@ import { AuthContext } from '../../Provider/AuthProvidder/AuthProvider';
 const Register = () => {
 
     const {registerUser}=useContext(AuthContext)
+    
     const showPassword = false;
     const showconfirmedPassword = false;
     const handleSubmit = (e) => {
