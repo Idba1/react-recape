@@ -6,7 +6,7 @@ import { AuthContext } from '../../Provider/AuthProvidder/AuthProvider';
 
 const Register = () => {
 
-    const {registerUser}=useContext(AuthContext)
+    const {registerUser, setUser}=useContext(AuthContext)
     const[error,setError]=useState("");
     const showPassword = false;
     const showconfirmedPassword = false;
@@ -37,7 +37,7 @@ const Register = () => {
         setError('');
         console.log(name, email, photo, password,confirmedPassword);
         registerUser(email,password)
-        .then(result=>console.log(result.user))
+        .then(result=>setUser(result.user))
         .catch(error=>setError(error.message.split("/")[1].replace(")", "")))
     }
 
