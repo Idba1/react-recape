@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 import SocialLogIn from "../SocialLogIn/SocialLogIn";
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvidder/AuthProvider";
 
 const LogIn = () => {
+    const user=useContext(AuthContext);
+    console.log(user);
     const handleLogIn = (e) => {
         e.preventDefault()
         const email = e.target.email.value;
