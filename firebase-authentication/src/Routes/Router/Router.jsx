@@ -7,6 +7,7 @@ import Home from "../../Components/Home/Home";
 import LogIn from "../../Components/LogIn/LogIn";
 import Register from "../../Components/Register/Register"
 import About from "../../Components/About/About";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const Router = createBrowserRouter([
     {
@@ -28,7 +29,9 @@ const Router = createBrowserRouter([
             },
             {
                 path: '/about',
-                element: <About/>,
+                element: <PrivateRoute>
+                    <About />
+                </PrivateRoute>,
             },
         ]
     },
