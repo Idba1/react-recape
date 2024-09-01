@@ -40,6 +40,9 @@ const Navbar = () => {
                         <Link className="mr-5" to={"/"}>Home</Link>
                         <Link className="mr-5" to={"/login"}>LogIn</Link>
                         <Link className="mr-5" to={"/register"}>Register</Link>
+                        {
+                            user && <Link className="mr-5" to={"/about"}>About</Link>
+                        }
                     </ul>
                 </div>
                 <div className="navbar-end">
