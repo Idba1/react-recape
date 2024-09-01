@@ -2,12 +2,18 @@ import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvidder/AuthProvider";
 
 const SocialLogIn = () => {
-    const{googleLogIn}=useContext(AuthContext)
+    const { googleLogIn, setUser, facebookLogIn } = useContext(AuthContext)
 
-    const handleWithGoogleLogIn=()=>{
+    const handleWithGoogleLogIn = () => {
         googleLogIn()
-        .then(result=>console.log(result.user))
+            .then(result => setUser(result.user))
     }
+
+    const handleWithFacebookLogIn = () => {
+        facebookLogIn()
+            .then(result => setUser(result.user))
+            .catch(error => console.error("Facebook login error:", error));
+    };
     return (
         <div>
             <div className="my-6 space-y-4">
@@ -28,6 +34,12 @@ const SocialLogIn = () => {
                         <path d="M31.937 6.093c-1.177 0.516-2.437 0.871-3.765 1.032 1.355-0.813 2.391-2.099 2.885-3.631-1.271 0.74-2.677 1.276-4.172 1.579-1.192-1.276-2.896-2.079-4.787-2.079-3.625 0-6.563 2.937-6.563 6.557 0 0.521 0.063 1.021 0.172 1.495-5.453-0.255-10.287-2.875-13.52-6.833-0.568 0.964-0.891 2.084-0.891 3.303 0 2.281 1.161 4.281 2.916 5.457-1.073-0.031-2.083-0.328-2.968-0.817v0.079c0 3.181 2.26 5.833 5.26 6.437-0.547 0.145-1.131 0.229-1.724 0.229-0.421 0-0.823-0.041-1.224-0.115 0.844 2.604 3.26 4.5 6.14 4.557-2.239 1.755-5.077 2.801-8.135 2.801-0.521 0-1.041-0.025-1.563-0.088 2.917 1.86 6.36 2.948 10.079 2.948 12.067 0 18.661-9.995 18.661-18.651 0-0.276 0-0.557-0.021-0.839 1.287-0.917 2.401-2.079 3.281-3.396z"></path>
                     </svg>
                     <p>Login with Twitter</p>
+                </button>
+                <button onClick={handleWithFacebookLogIn} aria-label="Login with Facebook" role="button" className="flex items-center justify-center w-full p-4 space-x-4 border rounded-md focus:ring-2 focus:ring-offset-1 border-gray-400 focus:ring-violet-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" className="w-5 h-5 fill-current">
+                        <path d="M29 0h-26c-1.656 0-3 1.344-3 3v26c0 1.656 1.344 3 3 3h14v-12h-4v-4h4v-3c0-4.097 2.501-6.317 6.146-6.317 1.753 0 3.657 0.308 3.657 0.308v4.001h-2.061c-2.029 0-2.673 1.25-2.673 2.539v2.469h5l-1 4h-4v12h6c1.656 0 3-1.344 3-3v-26c0-1.656-1.344-3-3-3z"></path>
+                    </svg>
+                    <p>Login with Facebook</p>
                 </button>
             </div>
         </div>
