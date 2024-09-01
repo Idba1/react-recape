@@ -14,6 +14,8 @@ const SocialLogIn = () => {
             .then(result => setUser(result.user))
             .catch(error => console.error("Facebook login error:", error));
     };
+
+
     return (
         <div>
             <div className="my-6 space-y-4">
