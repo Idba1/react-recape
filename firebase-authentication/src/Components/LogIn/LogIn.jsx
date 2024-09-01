@@ -1,11 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogIn from "../SocialLogIn/SocialLogIn";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "../../Provider/AuthProvidder/AuthProvider";
 
 const LogIn = () => {
-    const {logInUser}=useContext(AuthContext);
+    const {logInUser, user}=useContext(AuthContext);
     // console.log(user);
+    const location = useLocation()
+    console.log(location);
+    const navigate = useNavigate()
 
     const handleLogIn = (e) => {
         e.preventDefault()
@@ -14,6 +17,13 @@ const LogIn = () => {
         console.log(email, password);
         logInUser(email,password)
     }
+
+    useEffect(()=>{
+        if(user){
+            navigate(location.state)
+        }
+    },[user])
+
     return (
         <div>
             <div className="w-full mx-auto max-w-md p-4 rounded-md shadow sm:p-8 ">
