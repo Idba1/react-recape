@@ -7,12 +7,11 @@ export const AuthContext = createContext(null)
 
 const AuthProvider = ({ children }) => {
 
-    const createUser=()=>{
+    const createUser = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password)
-
     }
-    const allvalues={
-       createUser
+    const allvalues = {
+        createUser
     };
     return (
         <div>
