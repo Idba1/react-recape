@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import UseAuth from "../../Hooks/UseAuth/UseAuth";
 
 const Menus = () => {
     const links = ['products', 'about', 'contact', 'blog'];
@@ -13,7 +14,8 @@ const Menus = () => {
     )
 }
 const NavBar = () => {
-    const user = false;
+    const { signOut, user } = UseAuth();
+    console.log(user);
     return (
         <>
             <div className="navbar bg-base-100">
@@ -47,11 +49,11 @@ const NavBar = () => {
                             </label>
                             <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                                 <li>
-                                    <button className="btn btn-sm  btn-ghost">Farhan</button>
+                                    <button className="btn btn-sm  btn-ghost">{user.email}</button>
 
                                 </li>
                                 <li>
-                                    <button className="btn btn-sm  btn-ghost">Logout</button>
+                                    <button onClick={signOut} className="btn btn-sm  btn-ghost">Logout</button>
 
                                 </li>
                             </ul>

@@ -27,13 +27,19 @@ const AuthProvider = ({ children }) => {
     }
 
     // google login
-    const googleLogIn=()=>{
-        return signInWithPopup(auth,googleProvider)
+    const googleLogIn = () => {
+        return signInWithPopup(auth, googleProvider)
     }
 
     // github login
-    const githubLogIn=()=>{
+    const githubLogIn = () => {
         return signInWithPopup(auth, githubProvider)
+    }
+
+    // signout
+    const signOut = () => {
+        setUser(null)
+        signOut(auth)
     }
 
     // obsever
@@ -51,7 +57,9 @@ const AuthProvider = ({ children }) => {
         createUser,
         signIn,
         googleLogIn,
-        githubLogIn
+        githubLogIn,
+        signOut,
+        user
     };
     return (
         <div>
