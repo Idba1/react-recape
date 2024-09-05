@@ -1,7 +1,7 @@
 import UseAuth from "../../Hooks/UseAuth/UseAuth";
 
 const SocialLogin = () => {
-    const { googleLogIn } = UseAuth();
+    const { googleLogIn,twitterLogIn } = UseAuth();
     // console.log(googleLogIn);
     const { githubLogIn } = UseAuth()
     return (
@@ -15,7 +15,7 @@ const SocialLogin = () => {
                     <button onClick={() => githubLogIn()} className="btn btn-primary btn-outline">Github</button>
                 </div>
                 <div className="">
-                    <button onClick={() => githubLogIn()} className="btn btn-primary btn-outline">Twitter</button>
+                    <button onClick={() => twitterLogIn()} className="btn btn-primary btn-outline">Twitter</button>
                 </div>
             </div>
         </>
