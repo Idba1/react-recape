@@ -14,6 +14,9 @@ const SocialLogin = () => {
                 <div className="">
                     <button onClick={() => githubLogIn()} className="btn btn-primary btn-outline">Github</button>
                 </div>
+                <div className="">
+                    <button onClick={() => githubLogIn()} className="btn btn-primary btn-outline">Twitter</button>
+                </div>
             </div>
         </>
     );
