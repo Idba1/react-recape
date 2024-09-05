@@ -2,7 +2,7 @@ import UseAuth from "../../Hooks/UseAuth/UseAuth";
 
 const SocialLogin = () => {
     const { googleLogIn } = UseAuth();
-    console.log(googleLogIn);
+    // console.log(googleLogIn);
     const { githubLogIn } = UseAuth()
     return (
         <>

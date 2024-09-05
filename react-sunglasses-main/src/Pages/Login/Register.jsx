@@ -37,12 +37,12 @@ const Register = () => {
                         <div className="card-body">
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Full Name</span>
+                                    <span className="label-text">displayName</span>
                                 </label>
-                                <input type="text" placeholder="Full name" className="input input-bordered"
-                                    {...register("fullName", { required: true })}
+                                <input type="text" placeholder="displayName" className="input input-bordered"
+                                    {...register("displayName", { required: true })}
                                 />
-                                {errors.fullName && <span className='text-red-600'>This field is required</span>}
+                                {errors.displayName && <span className='text-red-600'>This field is required</span>}
                             </div>
                             <div className="form-control">
                                 <label className="label">
