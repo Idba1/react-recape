@@ -84,7 +84,8 @@ const AuthProvider = ({ children }) => {
         signOut,
         user,
         twitterLogIn,
-        facebookLogIn
+        facebookLogIn,
+        loading
     };
     return (
         <div>
