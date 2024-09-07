@@ -10,6 +10,8 @@ export const AuthContext = createContext(null)
 const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true)
+    console.log(loading);
 
     // social loinProvider
     const googleProvider = new GoogleAuthProvider();
@@ -20,32 +22,38 @@ const AuthProvider = ({ children }) => {
 
     // create user
     const createUser = (email, password) => {
+        setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
     // signin user
     const signIn = (email, password) => {
+        setLoading(true)
         return signInWithEmailAndPassword(auth, email, password)
     }
 
     // google login
     const googleLogIn = () => {
+        setLoading(true)
         return signInWithPopup(auth, googleProvider)
     }
 
     // github login
     const githubLogIn = () => {
+        setLoading(true)
         return signInWithPopup(auth, githubProvider)
     }
 
     // twiterLogIn
-    const twitterLogIn=()=>{
+    const twitterLogIn = () => {
+        setLoading(true)
         return signInWithPopup(auth, twitterProvider)
     }
 
 
     // twiterLogIn
-    const facebookLogIn=()=>{
+    const facebookLogIn = () => {
+        setLoading(true)
         return signInWithPopup(auth, facebookProvider)
     }
 
@@ -57,11 +65,13 @@ const AuthProvider = ({ children }) => {
 
     // obsever
     useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
+        const unSubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
                 setUser(user)
+                setLoading(false)
             }
         });
+        return ()=>unSubscribe();
     }, [])
     console.log(user);
 
