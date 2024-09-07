@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form"
 
 const Register = () => {
 
-    const { createUser } = useContext(AuthContext)
+    const { createUser, updateUserProfile } = useContext(AuthContext)
 
     const {
         register,
@@ -14,19 +14,23 @@ const Register = () => {
         formState: { errors },
     } = useForm()
 
-    const navigate=useNavigate()
-    const location=useLocation()
-    const from= location?.state||'/';
+    const navigate = useNavigate()
+    const location = useLocation()
+    const from = location?.state || '/';
 
     const onSubmit = (data) => {
         // console.log(data);
-        const {email, password}=data
-        createUser(email,password)
-        .then((result) => {
-            if(result.user)
-                navigate(from)
-            // console.log(result);
-        })
+        const { email, password, image , fullName} = data
+
+        // create user and update profile
+        createUser(email, password)
+            .then(() => {
+                updateUserProfile(fullName,image)
+                    .then(() => {
+                        navigate(from)
+                        // console.log(result);
+                    })
+            })
     }
 
 

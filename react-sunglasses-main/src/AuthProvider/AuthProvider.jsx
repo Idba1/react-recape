@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { createUserWithEmailAndPassword, FacebookAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, TwitterAuthProvider } from "firebase/auth";
+import { createUserWithEmailAndPassword, FacebookAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, TwitterAuthProvider, updateProfile } from "firebase/auth";
 import { auth } from "../Firebase/firebase.config";
 import { GoogleAuthProvider } from "firebase/auth";
 import { GithubAuthProvider } from "firebase/auth";
@@ -25,6 +25,15 @@ const AuthProvider = ({ children }) => {
         setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password)
     }
+
+    // update user
+    const updateUserProfile = (name,image) => {
+        return updateProfile(auth.currentUser, {
+            displayName: name, 
+            photoURL: image
+        })
+    }
+
 
     // signin user
     const signIn = (email, password) => {
@@ -71,7 +80,7 @@ const AuthProvider = ({ children }) => {
                 setLoading(false)
             }
         });
-        return ()=>unSubscribe();
+        return () => unSubscribe();
     }, [])
     console.log(user);
 
@@ -85,7 +94,8 @@ const AuthProvider = ({ children }) => {
         user,
         twitterLogIn,
         facebookLogIn,
-        loading
+        loading,
+        updateUserProfile
     };
     return (
         <div>
