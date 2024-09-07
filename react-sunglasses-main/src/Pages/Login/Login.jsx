@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import SocialLogin from './SocialLogin';
 import { useContext } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
@@ -13,11 +13,18 @@ const Login = () => {
         formState: { errors },
     } = useForm();
 
+    const navigate = useNavigate()
+    const location = useLocation()
+    const from = location?.state || '/';
+
+
     const onSubmit = (data) => {
         const { email, password } = data
         signIn(email, password)
             .then((result) => {
-                console.log(result);
+                if (result.user)
+                    navigate(from)
+                // console.log(result);
             })
             .catch((errors) => {
                 console.log(errors);
@@ -62,7 +69,7 @@ const Login = () => {
                             <label className="label">
                                 New here? <Link to="/register" className="label-text-alt link link-hover">Create an account</Link>
                             </label>
-                            
+
                         </div>
                     </form>
                     <SocialLogin />

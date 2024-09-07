@@ -6,11 +6,11 @@ const SocialLogin = () => {
     // console.log(googleLogIn);
     const navigate=useNavigate()
     const location=useLocation()
-    const from= location?.state||'/'
+    const from= location?.state||'/';
 
     const handleSocialLogIn = socialProvider => {
         socialProvider()
-            .then(result => {
+            .then((result) => {
                 if(result.user)
                     navigate(from)
                 // console.log(result);
