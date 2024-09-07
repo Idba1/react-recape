@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, TwitterAuthProvider } from "firebase/auth";
+import { createUserWithEmailAndPassword, FacebookAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, TwitterAuthProvider } from "firebase/auth";
 import { auth } from "../Firebase/firebase.config";
 import { GoogleAuthProvider } from "firebase/auth";
 import { GithubAuthProvider } from "firebase/auth";
@@ -15,7 +15,7 @@ const AuthProvider = ({ children }) => {
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();
     const twitterProvider = new TwitterAuthProvider();
-
+    const facebookProvider = new FacebookAuthProvider();
 
 
     // create user
@@ -43,6 +43,12 @@ const AuthProvider = ({ children }) => {
         return signInWithPopup(auth, twitterProvider)
     }
 
+
+    // twiterLogIn
+    const facebookLogIn=()=>{
+        return signInWithPopup(auth, facebookProvider)
+    }
+
     // signout
     const signOut = () => {
         setUser(null)
@@ -67,7 +73,8 @@ const AuthProvider = ({ children }) => {
         githubLogIn,
         signOut,
         user,
-        twitterLogIn
+        twitterLogIn,
+        facebookLogIn
     };
     return (
         <div>
