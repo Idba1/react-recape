@@ -7,8 +7,8 @@ const PasswordResetModal = () => {
 
     const handleSubmit = () => {
         passwordReset(email)
-        .than(res=>{
-            console.log(res);
+        .than(()=>{
+            // console.log(res );
         })
     }
     return (
