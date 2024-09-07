@@ -20,7 +20,7 @@ const SocialLogin = () => {
     return (
         <>
             <div className="divider">continue with</div>
-            <div className="flex gap-5">
+            <div className="flex flex-wrap gap-5">
                 <div className="">
                     <button onClick={() => handleSocialLogIn(googleLogIn)} className="btn btn-primary btn-outline">Google</button>
                 </div>

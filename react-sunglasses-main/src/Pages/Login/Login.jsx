@@ -3,6 +3,8 @@ import SocialLogin from './SocialLogin';
 import { useContext } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import { useForm } from 'react-hook-form';
+import PasswordResetModal from '../../Components/PasswordResetModal/PasswordResetModal';
+
 
 const Login = () => {
     const { signIn } = useContext(AuthContext);
@@ -59,9 +61,8 @@ const Login = () => {
                                     {...register("password", { required: true })}
                                 />
                                 {errors.password && <span className='text-red-600'>This field is required</span>}
-                                <label className="label">
-                                    <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                                </label>
+                                {/* modal */}
+                                < PasswordResetModal></PasswordResetModal>
                             </div>
                             <div className="form-control mt-6 p-0">
                                 <button className="btn btn-neutral">Login</button>
