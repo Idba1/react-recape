@@ -1,10 +1,15 @@
 import { useState } from "react";
+import UseAuth from "../../Hooks/UseAuth/UseAuth";
 
 const PasswordResetModal = () => {
     const [email, setEmail] = useState("")
+    const { passwordReset } = UseAuth()
 
     const handleSubmit = () => {
-        console.log(email);
+        passwordReset(email)
+        .than(res=>{
+            console.log(res);
+        })
     }
     return (
         <div>
@@ -15,12 +20,12 @@ const PasswordResetModal = () => {
             </label>
 
             <dialog id="my_modal_2" className="modal">
-                <div className="modal-box">
+                <div className="modal-box flex flex-col">
                     <input type="text" onChange={(e) => setEmail(e.target.value)} />
                     <button onClick={handleSubmit}>Submit</button>
                 </div>
                 <form method="dialog" className="modal-backdrop">
-                    <button>close</button>
+                    <button className="btn btn-sm btn-accent">close</button>
                 </form>
             </dialog>
 

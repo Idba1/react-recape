@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { createUserWithEmailAndPassword, FacebookAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, TwitterAuthProvider, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, FacebookAuthProvider, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, TwitterAuthProvider, updateProfile } from "firebase/auth";
 import { auth } from "../Firebase/firebase.config";
 import { GoogleAuthProvider } from "firebase/auth";
 import { GithubAuthProvider } from "firebase/auth";
@@ -72,6 +72,10 @@ const AuthProvider = ({ children }) => {
         signOut(auth)
     }
 
+    // Send reset password request
+    const passwordReset=(email)=>{
+        return sendPasswordResetEmail(auth, email)
+    }
     // obsever
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (user) => {
@@ -95,7 +99,8 @@ const AuthProvider = ({ children }) => {
         twitterLogIn,
         facebookLogIn,
         loading,
-        updateUserProfile
+        updateUserProfile,
+        passwordReset
     };
     return (
         <div>
