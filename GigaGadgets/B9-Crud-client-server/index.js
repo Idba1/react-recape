@@ -2,13 +2,13 @@ const express = require('express')
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const cors = require('cors')
 require('dotenv').config()
-const port = process.env.PORT || 9000
+const port = process.env.PORT || 5000
 const app = express()
 
 const corsOptions = {
     origin: [
         'http://localhost:5173',
-        'http://localhost:5174', 
+        'http://localhost:5174',
     ],
     credentials: true,
     optionSuccessStatus: 200,
@@ -29,6 +29,14 @@ const client = new MongoClient(uri, {
 });
 async function run() {
     try {
+        const productCollection = client.db("GigaGadgets").collection("products");
+
+        app.post("/addProduct", async (req, res) => {
+            console.log(req.body);
+            const result = await productCollection.insertOne(req.body);
+            console.log(result);
+            res.send(result)
+        })
         // Connect the client to the server	(optional starting in v4.7)
         // Send a ping to confirm a successful connection
         await client.db("admin").command({ ping: 1 });
